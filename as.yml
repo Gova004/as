@@ -1,0 +1,17 @@
+---
+- name: Hide sensitive data using no_log
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Store sensitive information in a variable
+      set_fact:
+        secret_password: "MySuperSecret123"
+
+    - name: Print secret password (for debugging - will be hidden in logs)
+      debug:
+        msg: "The password is {{ secret_password }}"
+      no_log: true
+
+    - name: Use the secret password in a task
+      shell: echo "{{ secret_password }}" > /tmp/secret.txt
+      no_log: true
