@@ -12,6 +12,6 @@
         msg: "The password is {{ secret_password }}"
       no_log: true
 
-    - name: Use the secret password in a task
-      shell: echo "{{ secret_password }}" > /tmp/secret.txt
-      no_log: true
+    - name: Print secret password (for debugging - will be hidden in logs)
+      debug:
+        msg: "The password is {{ secret_password }}"
